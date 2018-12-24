@@ -3,5 +3,6 @@ package model;
 public enum ContactMethod {
     PHONE,
     EMAIL,
-    INPERSON;
+    INPERSON,
+    MAIL;
 }
