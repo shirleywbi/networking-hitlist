@@ -5,8 +5,10 @@ import javax.swing.*;
 public class ReminderTab extends JPanel{
     JLabel reminderLabel = new JLabel("Contact Reminders");
 
-    public ReminderTab() {
+    TabFormat format = new TabFormat();
 
+    public ReminderTab() {
+        format.setInset(this);
     }
 
 }

@@ -5,7 +5,9 @@ import javax.swing.*;
 public class TextTab extends JPanel {
     JLabel textLabel = new JLabel("Text Contacts");
 
-//    public TextTab() {
-//
-//    }
+    TabFormat format = new TabFormat();
+
+    public TextTab() {
+        format.setInset(this);
+    }
 }

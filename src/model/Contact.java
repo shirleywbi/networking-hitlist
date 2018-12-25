@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Contact {
-    private String firstName;
-    private String middleName;
-    private String lastName;
+    private String name;
     private String phone;
     private String email;
     private String address;
@@ -20,10 +18,8 @@ public class Contact {
     private ContactEvent lastContact;
     private ContactMethod preferredContactMethod;
 
-    public Contact(String firstName, String middleName, String lastName, String phone, String email){
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
+    public Contact(String name, String phone, String email){
+        this.name = name;
         this.phone = phone;
         this.email = email;
     }
@@ -52,13 +48,11 @@ public class Contact {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contact contact = (Contact) o;
-        return Objects.equals(firstName, contact.firstName) &&
-                Objects.equals(middleName, contact.middleName) &&
-                Objects.equals(lastName, contact.lastName);
+        return Objects.equals(name, contact.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, middleName, lastName);
+        return Objects.hash(name);
     }
 }

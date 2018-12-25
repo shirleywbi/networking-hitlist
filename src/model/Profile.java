@@ -8,25 +8,21 @@ import java.util.ArrayList;
 //Singleton pattern on Profile with personal information
 public class Profile {
     private static Profile instance = null;
-    private String firstName;
-    private String middleName;
-    private String lastName;
+    private String name;
     private String phone;
     private String email;
     private String address;
     private ArrayList<Contact> contacts = new ArrayList<>();
 
-    private Profile(String firstName, String lastName, String phone, String email, String address) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    private Profile(String name, String phone, String email, String address) {
         this.phone = phone;
         this.email = email;
         this.address = address;
     }
 
-    public static Profile getInstance(String firstName, String lastName, String phone, String email, String address) {
+    public static Profile getInstance(String name, String phone, String email, String address) {
         if (instance == null) {
-            instance = new Profile(firstName, lastName, phone, email, address);
+            instance = new Profile(name, phone, email, address);
         }
         return instance;
     }
@@ -56,14 +52,8 @@ public class Profile {
     }
 
     //getters
-    public String getFirstName() {
-        return firstName;
-    }
-    public String getMiddleName() {
-        return middleName;
-    }
-    public String getLastName() {
-        return lastName;
+    public String getName() {
+        return name;
     }
     public String getPhone() {
         return phone;
@@ -79,14 +69,8 @@ public class Profile {
     }
 
     //setters
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
     public void setPhone(String phone) throws InvalidPhoneException {
         if (phone.matches("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$")) {

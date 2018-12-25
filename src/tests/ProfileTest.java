@@ -14,7 +14,7 @@ public class ProfileTest {
 
     @BeforeEach
     public void testSetup() {
-        testProfile = Profile.getInstance("John","Smith","604-555-1234","john.smith@gmail.com",
+        testProfile = Profile.getInstance("John Smith","604-555-1234","john.smith@gmail.com",
                 "555 Test Street, City, Province, PostalCode");
     }
 

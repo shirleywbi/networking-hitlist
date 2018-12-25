@@ -5,7 +5,9 @@ import javax.swing.*;
 public class EmailTab extends JPanel {
     JLabel emailLabel = new JLabel("Email Contacts");
 
-    public EmailTab() {
+    TabFormat format = new TabFormat();
 
+    public EmailTab() {
+        format.setInset(this);
     }
 }
