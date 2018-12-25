@@ -8,8 +8,10 @@ public class TabLayout extends JTabbedPane{
     ReminderTab reminderPanel = new ReminderTab();
     EmailTab emailPanel = new EmailTab();
     TextTab textPanel = new TextTab();
+    TabFormat format = new TabFormat();
 
     public TabLayout() {
+        format.setTitleFont(this);
         add("Profile",profilePanel);
         add("Contact", contactPanel);
         add("Contact Reminder", reminderPanel);

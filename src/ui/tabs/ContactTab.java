@@ -2,9 +2,7 @@ package ui.tabs;
 
 import model.Contact;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,10 +18,7 @@ public class ContactTab extends JPanel implements ActionListener {
 
     JButton addContactButton = new JButton("+");
     JButton saveContactButton = new JButton("Save");
-    JButton editNameButton = new JButton();
-    JButton editPhoneNumberButton = new JButton();
-    JButton editEmailButton = new JButton();
-    JButton editNotesButton = new JButton();
+    JButton editButton = new JButton();
 
     JTextField nameField = new JTextField();
     JTextField phoneField = new JTextField();
@@ -38,20 +33,24 @@ public class ContactTab extends JPanel implements ActionListener {
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
         //set font size
-        contactLabel.setFont(format.getTitleFont());
-        nameLabel.setFont(format.getSubtitleFont());
-        phoneLabel.setFont(format.getSubtitleFont());
-        emailLabel.setFont(format.getSubtitleFont());
-        notesLabel.setFont(format.getSubtitleFont());
-        nameField.setFont(format.getSubtitleFont());
-        emailField.setFont(format.getSubtitleFont());
-        notesField.setFont(format.getSubtitleFont());
+        format.setTitleFont(contactLabel);
+        format.setSubtitleFont(nameLabel);
+        format.setSubtitleFont(phoneLabel);
+        format.setSubtitleFont(emailLabel);
+        format.setSubtitleFont(notesLabel);
+        format.setSubtitleFont(nameField);
+        format.setSubtitleFont(emailField);
+        format.setSubtitleFont(notesField);
+        format.setSubtitleFont(addContactButton);
+        format.setSubtitleFont(saveContactButton);
 
         //set field size
         format.setFieldSize(nameField);
         format.setFieldSize(phoneField);
         format.setFieldSize(emailField);
         format.setLargeFieldSize(notesField);
+
+        format.setEditButton(editButton);
 
         //add labels
         add(contactLabel);
@@ -64,21 +63,8 @@ public class ContactTab extends JPanel implements ActionListener {
         add(notesLabel);
         add(notesField);
 
-        try {
-            //TODO: This is not working, need to figure out why calling null
-            Image img = ImageIO.read(getClass().getResource("resources/edit-img.png"));
-            editNameButton.setIcon(new ImageIcon(img));
-            editPhoneNumberButton.setIcon(new ImageIcon(img));
-            editEmailButton.setIcon(new ImageIcon(img));
-            editNotesButton.setIcon(new ImageIcon(img));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
         add(addContactButton);
-        add(editNameButton);
-        add(editPhoneNumberButton);
-        add(editEmailButton);
-        add(editNotesButton);
+        add(editButton);
         add(saveContactButton);
 
         //EFFECTS: sets button actions
@@ -86,14 +72,8 @@ public class ContactTab extends JPanel implements ActionListener {
         addContactButton.addActionListener(this);
         saveContactButton.setActionCommand(SAVE_CONTACT.toString());
         saveContactButton.addActionListener(this);
-        editNameButton.setActionCommand(EDIT_NAME.toString());
-        editNameButton.addActionListener(this);
-        editPhoneNumberButton.setActionCommand(EDIT_PHONE.toString());
-        editPhoneNumberButton.addActionListener(this);
-        editEmailButton.setActionCommand(EDIT_EMAIL.toString());
-        editEmailButton.addActionListener(this);
-        editNotesButton.setActionCommand(EDIT_NOTES.toString());
-        editNotesButton.addActionListener(this);
+        editButton.setActionCommand(EDIT_CONTACT.toString());
+        editButton.addActionListener(this);
     }
 
     //View Contacts Tab
@@ -114,16 +94,7 @@ public class ContactTab extends JPanel implements ActionListener {
             Contact contact = new Contact(name,phone,email);
 
         }
-        if (e.equals(EDIT_NAME.toString())) {
-
-        }
-        if (e.equals(EDIT_PHONE.toString())) {
-
-        }
-        if (e.equals(EDIT_EMAIL.toString())) {
-
-        }
-        if (e.equals(EDIT_NOTES.toString())) {
+        if (e.equals(EDIT_CONTACT.toString())) {
 
         }
     }

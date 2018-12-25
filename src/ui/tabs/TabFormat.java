@@ -1,33 +1,50 @@
 package ui.tabs;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class TabFormat {
     private Font titleFont = new Font(null, Font.BOLD, 20);
-    private Font subtitleFont = new Font(null, Font.PLAIN,16);
+    private Font subtitleFont = new Font(null, Font.PLAIN, 16);
 
     //EFFECTS: sets border of 10px around JComponent
     public void setInset(JComponent component) {
-        component.setBorder(new EmptyBorder(10,10,10,10));
+        component.setBorder(new EmptyBorder(10, 10, 10, 10));
     }
 
     //EFFECTS: sets field size to max-width, mid height
     public void setFieldSize(JComponent component) {
-        component.setMaximumSize(new Dimension(Integer.MAX_VALUE,40));
+        component.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
     }
 
     //EFFECTS: sets field size to max-width, large height
     public void setLargeFieldSize(JComponent component) {
-        component.setMaximumSize(new Dimension(Integer.MAX_VALUE,100));
+        component.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
     }
 
-    //getters
-    public Font getTitleFont() {
-        return titleFont;
+    //EFFECTS: creates edit button
+    public Image setEditButton(JButton button) {
+        try {
+            Image img = ImageIO.read(getClass().getResource("/resources/edit-img.png"));
+            img = img.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+            button.setIcon(new ImageIcon(img));
+        } catch (Exception e) {
+        }
+        return null;
     }
-    public Font getSubtitleFont() {return subtitleFont;}
+
+    //EFFECTS: sets large font
+    public void setTitleFont(JComponent component) {
+        component.setFont(titleFont);
+    }
+
+    //EFFECTS: sets mid font
+    public void setSubtitleFont(JComponent component) {
+        component.setFont(subtitleFont);
+    }
+
 
 }
 /*

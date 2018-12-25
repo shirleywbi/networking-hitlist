@@ -27,6 +27,15 @@ public class ProfileTab extends JPanel {
         format.setFieldSize(phoneField);
         format.setFieldSize(emailField);
 
+        //set font
+        format.setTitleFont(profileLabel);
+        format.setSubtitleFont(nameLabel);
+        format.setSubtitleFont(phoneLabel);
+        format.setSubtitleFont(emailLabel);
+        format.setSubtitleFont(nameField);
+        format.setSubtitleFont(phoneField);
+        format.setSubtitleFont(emailField);
+
         //add labels, buttons, fields
         add(profileLabel);
         add(nameLabel);
