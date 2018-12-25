@@ -3,13 +3,14 @@ package ui.tabs;
 import javax.swing.*;
 
 public class TabLayout extends JTabbedPane{
+    ProfileTab profilePanel = new ProfileTab();
     ContactTab contactPanel = new ContactTab();
     ReminderTab reminderPanel = new ReminderTab();
     EmailTab emailPanel = new EmailTab();
     TextTab textPanel = new TextTab();
 
     public TabLayout() {
-        setBounds(50,50,200,200);
+        add("Profile",profilePanel);
         add("Contact", contactPanel);
         add("Contact Reminder", reminderPanel);
         add("Email",emailPanel);

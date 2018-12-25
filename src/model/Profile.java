@@ -5,7 +5,9 @@ import exception.InvalidPhoneException;
 
 import java.util.ArrayList;
 
-public class PersonalInfo {
+//Singleton pattern on Profile with personal information
+public class Profile {
+    private static Profile instance = null;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -14,7 +16,7 @@ public class PersonalInfo {
     private String address;
     private ArrayList<Contact> contacts = new ArrayList<>();
 
-    public PersonalInfo(String firstName, String lastName, String phone, String email, String address) {
+    private Profile(String firstName, String lastName, String phone, String email, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -22,8 +24,15 @@ public class PersonalInfo {
         this.address = address;
     }
 
+    public static Profile getInstance(String firstName, String lastName, String phone, String email, String address) {
+        if (instance == null) {
+            instance = new Profile(firstName, lastName, phone, email, address);
+        }
+        return instance;
+    }
+
     //MODIFIES: this
-    //EFFECTS: adds contact to contact list
+    //EFFECTS: adds contact to contact list, //TODO: in alphabetal order
     public void addContact(Contact contact) {
         if (!contacts.contains(contact)) {
             contacts.add(contact);
@@ -40,6 +49,10 @@ public class PersonalInfo {
 
     public void updateContact(Contact contact) {
         //TODO
+    }
+
+    public ArrayList<Contact> sortContacts() {
+        return null; //stub
     }
 
     //getters

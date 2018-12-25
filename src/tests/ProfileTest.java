@@ -2,19 +2,20 @@ package tests;
 
 import exception.InvalidEmailException;
 import exception.InvalidPhoneException;
-import model.PersonalInfo;
+import model.Profile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class PersonalInfoTest {
-    PersonalInfo testProfile;
+public class ProfileTest {
+    Profile testProfile;
 
     @BeforeEach
     public void testSetup() {
-        testProfile = new PersonalInfo("John","Smith","604-555-1234","john.smith@gmail.com","555 Test Street, City, Province, PostalCode");
+        testProfile = Profile.getInstance("John","Smith","604-555-1234","john.smith@gmail.com",
+                "555 Test Street, City, Province, PostalCode");
     }
 
     @Test
@@ -51,7 +52,7 @@ public class PersonalInfoTest {
     @Test
     public void testUpdateEmailInvalid() {
         try {
-            testProfile.setEmail("");
+            testProfile.setEmail("@");
         } catch (InvalidEmailException e) {
             //pass, exception should be thrown
         }
