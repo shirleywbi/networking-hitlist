@@ -2,21 +2,19 @@ package ui.tabs;
 
 import javax.swing.*;
 
-import static javax.swing.SwingConstants.LEFT;
+public class TabLayout extends JTabbedPane{
+    ContactTab contactPanel = new ContactTab();
+    ReminderTab reminderPanel = new ReminderTab();
+    EmailTab emailPanel = new EmailTab();
+    TextTab textPanel = new TextTab();
 
-public class TabLayout {
+    public TabLayout() {
+        setBounds(50,50,200,200);
+        add("Contact", contactPanel);
+        add("Contact Reminder", reminderPanel);
+        add("Email",emailPanel);
+        add("Text",textPanel);
+        setTabPlacement(LEFT);
 
-    public JTabbedPane createContactsTab() {
-        JTabbedPane panelLayout = new JTabbedPane();
-        ContactTab contactPanel = new ContactTab();
-        ReminderTab reminderPanel = new ReminderTab();
-        EmailTab emailPanel = new EmailTab();
-        TextTab textPanel = new TextTab();
-        panelLayout.add("Contact", contactPanel);
-        panelLayout.add("Contact Reminder", reminderPanel);
-        panelLayout.add("Email",emailPanel);
-        panelLayout.add("Text",textPanel);
-        panelLayout.setTabPlacement(LEFT);
-        return panelLayout;
     }
 }
