@@ -56,15 +56,19 @@ public class Profile {
     public String getName() {
         return name;
     }
+
     public String getPhone() {
         return phone;
     }
+
     public String getEmail() {
         return email;
     }
+
     public String getAddress() {
         return address;
     }
+
     public ArrayList<Contact> getContacts() {
         return contacts;
     }
@@ -73,35 +77,25 @@ public class Profile {
     public void setName(String name) {
         this.name = name;
     }
-    public void setPhone(String phone) {
-        if (phone.matches("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$")) {
+
+    public void setPhone(String phone) throws InvalidPhoneException {
+        if (phone.matches("^([+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*){0,1}$")) {
             this.phone = phone;
         } else {
-            try {
-                throw new InvalidPhoneException();
-            } catch (InvalidPhoneException e) {
-            }
+            throw new InvalidPhoneException();
         }
-    }
-    public void setEmail(String email) {
-        if (email.matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")) {
-            this.email = email;
-        } else {
-            try {
-                throw new InvalidEmailException();
-            } catch (InvalidEmailException e) {
-            }
-        }
-    }
-    public void setAddress(String address) {
-        this.address = address;
     }
 
-    public void removePhone() {
-        this.phone = null;
+    public void setEmail(String email) throws InvalidEmailException {
+        if (email.matches("^([\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}){0,1}$")) {
+            this.email = email;
+        } else {
+            throw new InvalidEmailException();
+        }
     }
-    public void removeEmail() {
-        this.email = null;
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 }

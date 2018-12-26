@@ -17,10 +17,8 @@ public class AddContactTab extends JPanel implements ActionListener {
     JLabel phoneLabel = new JLabel("Phone Number");
     JLabel emailLabel = new JLabel("Email");
     JLabel notesLabel = new JLabel("Notes");
-
     JButton saveContactButton = new JButton("Save");
     JButton editButton = new JButton();
-
     JTextField nameField = new JTextField();
     JTextField phoneField = new JTextField();
     JTextField emailField = new JTextField();
@@ -59,7 +57,6 @@ public class AddContactTab extends JPanel implements ActionListener {
         emailField.setEditable(true);
         notesField.setEditable(true);
 
-
         //add labels
         add(contactLabel);
         add(nameLabel);
@@ -80,16 +77,8 @@ public class AddContactTab extends JPanel implements ActionListener {
         editButton.addActionListener(this);
     }
 
-    //View Contacts Tab
-    public AddContactTab(String string) {
-        JScrollPane scrollPane = new JScrollPane();
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals(ADD_CONTACT.toString())) {
-            //TODO: Show new panel
-        }
         if (e.getActionCommand().equals(NEW_CONTACT.toString())) {
             //TODO: New Contact using field inputs
             String name = nameField.getText();

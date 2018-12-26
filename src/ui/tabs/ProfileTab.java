@@ -1,5 +1,7 @@
 package ui.tabs;
 
+import exception.InvalidEmailException;
+import exception.InvalidPhoneException;
 import model.Profile;
 
 import javax.swing.*;
@@ -74,11 +76,20 @@ public class ProfileTab extends JPanel implements ActionListener{
         }
         if (e.getActionCommand().equals(SAVE_PROFILE.toString())) {
             profile.setName(nameField.getText());
-            profile.setEmail(emailField.getText());
-            profile.setPhone(phoneField.getText());
-            nameField.setEditable(false);
-            emailField.setEditable(false);
-            phoneField.setEditable(false);
+            try {
+                profile.setEmail(emailField.getText());
+                profile.setPhone(phoneField.getText());
+                nameField.setEditable(false);
+                emailField.setEditable(false);
+                phoneField.setEditable(false);
+            } catch (InvalidEmailException e1) {
+                String email = emailField.getText();
+                emailField.setText(email + " " + "Invalid email");  //TODO: Possibly turn into JLabel
+            } catch (InvalidPhoneException e1) {
+                String phone = phoneField.getText();
+                phoneField.setText(phone + " " + "Invalid phone");
+            }
+
         }
     }
 }
