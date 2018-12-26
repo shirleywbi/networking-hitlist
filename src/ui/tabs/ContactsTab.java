@@ -36,6 +36,12 @@ public class ContactsTab extends JPanel implements ActionListener {
 
         contactsPanel.add(scrollPane);
 
+        //TODO: Idea for contacts pane - https://www.javatpoint.com/BoxLayout
+//        for (int i = 0;i<profile.getContacts().size();i++) {
+//            buttons[i] = new Button (profile.getContacts().get(i).getName());
+//            add (buttons[i]);
+//        }
+
         add(titlePanel);
         add(contactsPanel);
 

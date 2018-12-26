@@ -24,7 +24,7 @@ public class TabFormat {
 
     //EFFECTS: sets field size to max-width, large height
     public void setLargeFieldSize(JComponent component) {
-        component.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+        component.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
     }
 
     //EFFECTS: creates edit button

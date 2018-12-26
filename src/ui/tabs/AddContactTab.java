@@ -5,6 +5,7 @@ import model.Profile;
 import sun.util.calendar.LocalGregorianCalendar;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,6 +32,13 @@ public class AddContactTab extends JPanel implements ActionListener {
         format.setInset(this);
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
+        JPanel titlePanel = new JPanel();
+        JPanel formPanel = new JPanel();
+        titlePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        titlePanel.setAlignmentX(LEFT_ALIGNMENT);
+        formPanel.setLayout(new BoxLayout(formPanel,BoxLayout.Y_AXIS));
+        formPanel.setAlignmentX(LEFT_ALIGNMENT);
+
         //set font size
         format.setTitleFont(contactLabel);
         format.setSubtitleFont(nameLabel);
@@ -51,6 +59,19 @@ public class AddContactTab extends JPanel implements ActionListener {
         format.setLargeFieldSize(notesField);
         notesField.setLineWrap(true);
 
+        //alignment
+        nameLabel.setAlignmentX(LEFT_ALIGNMENT);
+        nameField.setAlignmentX(LEFT_ALIGNMENT);
+        phoneLabel.setAlignmentX(LEFT_ALIGNMENT);
+        phoneField.setAlignmentX(LEFT_ALIGNMENT);
+        emailLabel.setAlignmentX(LEFT_ALIGNMENT);
+        emailField.setAlignmentX(LEFT_ALIGNMENT);
+        notesLabel.setAlignmentX(LEFT_ALIGNMENT);
+        notesField.setAlignmentX(LEFT_ALIGNMENT);
+
+        //add JTextArea border
+        notesField.setBorder(new JTextField().getBorder());
+
         //make fields uneditable
         nameField.setEditable(true);
         phoneField.setEditable(true);
@@ -58,20 +79,24 @@ public class AddContactTab extends JPanel implements ActionListener {
         notesField.setEditable(true);
 
         //add labels
-        add(contactLabel);
-        add(nameLabel);
-        add(nameField);
-        add(phoneLabel);
-        add(phoneField);
-        add(emailLabel);
-        add(emailField);
-        add(notesLabel);
-        add(notesField);
-        add(editButton);
-        add(saveContactButton);
+        titlePanel.add(contactLabel);
+        titlePanel.add(editButton);
+        editButton.setVisible(false);
+        titlePanel.add(saveContactButton);
+        formPanel.add(nameLabel);
+        formPanel.add(nameField);
+        formPanel.add(phoneLabel);
+        formPanel.add(phoneField);
+        formPanel.add(emailLabel);
+        formPanel.add(emailField);
+        formPanel.add(notesLabel);
+        formPanel.add(notesField);
+
+        add(titlePanel);
+        add(formPanel);
 
         //EFFECTS: sets button actions
-        saveContactButton.setActionCommand(NEW_CONTACT.toString());
+        saveContactButton.setActionCommand(SAVE_CONTACT.toString());
         saveContactButton.addActionListener(this);
         editButton.setActionCommand(EDIT_CONTACT.toString());
         editButton.addActionListener(this);
@@ -79,7 +104,7 @@ public class AddContactTab extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals(NEW_CONTACT.toString())) {
+        if (e.getActionCommand().equals(SAVE_CONTACT.toString())) {
             //TODO: New Contact using field inputs
             String name = nameField.getText();
             String phone = phoneField.getText();
@@ -97,6 +122,9 @@ public class AddContactTab extends JPanel implements ActionListener {
             phoneField.setEditable(false);
             emailField.setEditable(false);
             notesField.setEditable(false);
+            notesField.setBackground(emailField.getBackground());
+            editButton.setVisible(true);
+            saveContactButton.setVisible(false);
 
         }
         if (e.getActionCommand().equals(EDIT_CONTACT.toString())) {
@@ -104,9 +132,11 @@ public class AddContactTab extends JPanel implements ActionListener {
             phoneField.setEditable(true);
             emailField.setEditable(true);
             notesField.setEditable(true);
+            notesField.setBackground(emailField.getBackground());
+            editButton.setVisible(false);
+            saveContactButton.setVisible(true);
         }
     }
-
 }
 
 

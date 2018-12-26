@@ -34,8 +34,12 @@ Must allow for search by:
 **Add Contacts Tab:**\
 Status: Work in progress
 
-To add a new contact.
+Used to add a new contact.
+To add more buttons and fields regarding address, occupation, meeting, etc.
 
+To add: 
+- Restrictions on phone/email entered.
+- Ability to select text to send email or text in new tab. Button required.
 
 **To-do-list:**
 - Add tests
