@@ -8,11 +8,14 @@ import java.awt.*;
 public class TabFormat {
     private Font titleFont = new Font(null, Font.BOLD, 20);
     private Font subtitleFont = new Font(null, Font.PLAIN, 16);
+    private Font buttonFont = new Font(null, Font.BOLD, 16);
 
     //EFFECTS: sets border of 10px around JComponent
     public void setInset(JComponent component) {
         component.setBorder(new EmptyBorder(10, 10, 10, 10));
     }
+
+    public void setTopInset(JComponent component) {}
 
     //EFFECTS: sets field size to max-width, mid height
     public void setFieldSize(JComponent component) {
@@ -45,6 +48,10 @@ public class TabFormat {
         component.setFont(subtitleFont);
     }
 
+    //EFFECTS: sets mid font
+    public void setButtonFont(JComponent component) {
+        component.setFont(buttonFont);
+    }
 
 }
 /*

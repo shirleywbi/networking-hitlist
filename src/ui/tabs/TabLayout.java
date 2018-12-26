@@ -3,20 +3,22 @@ package ui.tabs;
 import javax.swing.*;
 
 public class TabLayout extends JTabbedPane{
-    ProfileTab profilePanel = new ProfileTab();
-    ContactTab contactPanel = new ContactTab();
-    ReminderTab reminderPanel = new ReminderTab();
-    EmailTab emailPanel = new EmailTab();
-    TextTab textPanel = new TextTab();
+    ProfileTab profileTab = new ProfileTab();
+    ContactsTab contactsTab = new ContactsTab();
+    AddContactTab addContactTab = new AddContactTab();
+    ReminderTab reminderTab = new ReminderTab();
+    EmailTab emailTab = new EmailTab();
+    TextTab textTab = new TextTab();
     TabFormat format = new TabFormat();
 
     public TabLayout() {
         format.setTitleFont(this);
-        add("Profile",profilePanel);
-        add("Contact", contactPanel);
-        add("Contact Reminder", reminderPanel);
-        add("Email",emailPanel);
-        add("Text",textPanel);
+        add("Profile", profileTab);
+        add("Contacts",contactsTab);
+        add("Add Contact", addContactTab);
+        add("Contact Reminder", reminderTab);
+        add("Email", emailTab);
+        add("Text", textTab);
         setTabPlacement(LEFT);
 
     }

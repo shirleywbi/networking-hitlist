@@ -20,9 +20,10 @@ public class Profile {
         this.address = address;
     }
 
-    public static Profile getInstance(String name, String phone, String email, String address) {
+    //EFFECTS: creates empty profile
+    public static Profile getInstance() {
         if (instance == null) {
-            instance = new Profile(name, phone, email, address);
+            instance = new Profile("", "", "", "");
         }
         return instance;
     }
@@ -72,18 +73,24 @@ public class Profile {
     public void setName(String name) {
         this.name = name;
     }
-    public void setPhone(String phone) throws InvalidPhoneException {
+    public void setPhone(String phone) {
         if (phone.matches("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$")) {
             this.phone = phone;
         } else {
-            throw new InvalidPhoneException();
+            try {
+                throw new InvalidPhoneException();
+            } catch (InvalidPhoneException e) {
+            }
         }
     }
-    public void setEmail(String email) throws InvalidEmailException {
+    public void setEmail(String email) {
         if (email.matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")) {
             this.email = email;
         } else {
-            throw new InvalidEmailException();
+            try {
+                throw new InvalidEmailException();
+            } catch (InvalidEmailException e) {
+            }
         }
     }
     public void setAddress(String address) {
