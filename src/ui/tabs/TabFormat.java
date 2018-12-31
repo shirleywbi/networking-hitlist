@@ -53,6 +53,18 @@ public class TabFormat {
         component.setFont(buttonFont);
     }
 
+    //EFFECTS: set invalid
+    public void invalidSettings(JTextField field, String text) {
+        field.setText("Invalid " + text);
+        field.setForeground(Color.RED);
+    }
+
+    //EFFECTS: set valid
+    public void validSettings(JTextField field) {
+        field.setText("");
+        field.setForeground(Color.BLACK);
+    }
+
 }
 /*
 References:

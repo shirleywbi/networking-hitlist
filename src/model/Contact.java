@@ -1,5 +1,7 @@
 package model;
 
+import exception.InvalidEmailException;
+import exception.InvalidPhoneException;
 import sun.util.calendar.LocalGregorianCalendar;
 
 import java.util.ArrayList;
@@ -87,11 +89,19 @@ public class Contact {
     public void setName(String name) {
         this.name = name;
     }
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(String phone) throws InvalidPhoneException {
+        if (phone.matches("^([+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*){0,1}$")) {
+            this.phone = phone;
+        } else {
+            throw new InvalidPhoneException();
+        }
     }
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email) throws InvalidEmailException {
+        if (email.matches("^([\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}){0,1}$")) {
+            this.email = email;
+        } else {
+            throw new InvalidEmailException();
+        }
     }
     public void setAddress(String address) {
         this.address = address;

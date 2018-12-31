@@ -1,5 +1,7 @@
 package ui.tabs;
 
+import exception.InvalidEmailException;
+import exception.InvalidPhoneException;
 import model.Contact;
 import model.Profile;
 import sun.util.calendar.LocalGregorianCalendar;
@@ -8,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import static ui.tabs.ActionCommand.*;
 
@@ -17,12 +21,14 @@ public class AddContactTab extends JPanel implements ActionListener {
     JLabel nameLabel = new JLabel("Name");
     JLabel phoneLabel = new JLabel("Phone Number");
     JLabel emailLabel = new JLabel("Email");
+    JLabel meetingLabel = new JLabel("Meeting");
     JLabel notesLabel = new JLabel("Notes");
     JButton saveContactButton = new JButton("Save");
     JButton editButton = new JButton();
     JTextField nameField = new JTextField();
     JTextField phoneField = new JTextField();
     JTextField emailField = new JTextField();
+    JTextField meetingField = new JTextField();
     JTextArea notesField = new JTextArea();
 
     TabFormat format = new TabFormat();
@@ -30,13 +36,13 @@ public class AddContactTab extends JPanel implements ActionListener {
     //Add Contact Tab
     public AddContactTab() {
         format.setInset(this);
-        setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         JPanel titlePanel = new JPanel();
         JPanel formPanel = new JPanel();
         titlePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         titlePanel.setAlignmentX(LEFT_ALIGNMENT);
-        formPanel.setLayout(new BoxLayout(formPanel,BoxLayout.Y_AXIS));
+        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
         formPanel.setAlignmentX(LEFT_ALIGNMENT);
 
         //set font size
@@ -100,12 +106,35 @@ public class AddContactTab extends JPanel implements ActionListener {
         saveContactButton.addActionListener(this);
         editButton.setActionCommand(EDIT_CONTACT.toString());
         editButton.addActionListener(this);
+        phoneField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (phoneField.getText().contains("Invalid")) {
+                    format.validSettings(phoneField);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+            }
+        });
+        emailField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (emailField.getText().contains("Invalid")) {
+                    format.validSettings(emailField);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+            }
+        });
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(SAVE_CONTACT.toString())) {
-            //TODO: New Contact using field inputs
             String name = nameField.getText();
             String phone = phoneField.getText();
             String email = emailField.getText();
@@ -114,18 +143,23 @@ public class AddContactTab extends JPanel implements ActionListener {
             LocalGregorianCalendar.Date birthday = null;
             String meeting = null;
             String notes = notesField.getText();
-
-            Contact contact = new Contact(name, phone, email, address, occupation, birthday, meeting, notes);
-            profile.addContact(contact);
-
-            nameField.setEditable(false);
-            phoneField.setEditable(false);
-            emailField.setEditable(false);
-            notesField.setEditable(false);
-            notesField.setBackground(emailField.getBackground());
-            editButton.setVisible(true);
-            saveContactButton.setVisible(false);
-
+            Contact contact = new Contact(name, "", "", address, occupation, birthday, meeting, notes);
+            try {
+                contact.setPhone(phone);
+                contact.setEmail(email);
+                profile.addContact(contact);
+                nameField.setEditable(false);
+                phoneField.setEditable(false);
+                emailField.setEditable(false);
+                notesField.setEditable(false);
+                notesField.setBackground(emailField.getBackground());
+                editButton.setVisible(true);
+                saveContactButton.setVisible(false);
+            } catch (InvalidEmailException e1) {
+                format.invalidSettings(emailField, "email");
+            } catch (InvalidPhoneException e1) {
+                format.invalidSettings(phoneField, "phone");
+            }
         }
         if (e.getActionCommand().equals(EDIT_CONTACT.toString())) {
             nameField.setEditable(true);

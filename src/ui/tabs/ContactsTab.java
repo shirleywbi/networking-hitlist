@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import static ui.tabs.ActionCommand.ADD_CONTACT;
 
@@ -30,9 +31,24 @@ public class ContactsTab extends JPanel implements ActionListener {
         titlePanel.add(contactLabel);
         titlePanel.add(addContactButton);
 
-        JTextArea textArea = new JTextArea();
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        textArea.setText("Test");  //TODO: Size this correctly
+        //TODO: FAKE CONTACTS FOR CHECKING UI
+        ArrayList<String> contactsAsString = new ArrayList<>();
+        contactsAsString.add("George");
+        contactsAsString.add("Peter");
+        contactsAsString.add("Bob");
+        contactsAsString.add("Alice");
+        contactsAsString.add("George");
+        contactsAsString.add("Peter");
+        contactsAsString.add("Bob");
+
+//        Object[] arrayOfContacts = profile.getContactsAsString().toArray(); //TODO: ACTUAL CODE -- This will need to be updated every time new contact is created
+        Object[] arrayOfContacts = contactsAsString.toArray(); //TODO: FAKE TESTING
+        JList<Object> listOfContacts = new JList<>(arrayOfContacts);
+
+//        JTable table = new JTable(new DefaultTableModel(),1);
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.addColumn("",);
+        JScrollPane scrollPane = new JScrollPane(listOfContacts);
 
         contactsPanel.add(scrollPane);
 

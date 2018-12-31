@@ -73,6 +73,14 @@ public class Profile {
         return contacts;
     }
 
+    public ArrayList<String> getContactsAsString() {
+        ArrayList<String> contactsAsString = new ArrayList<>();
+        for (Contact c: contacts) {
+            contactsAsString.add(c.getName());
+        }
+        return contactsAsString;
+    }
+
     //setters
     public void setName(String name) {
         this.name = name;

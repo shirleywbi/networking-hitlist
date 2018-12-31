@@ -10,7 +10,7 @@ When edit button is clicked, should turn into editable fields.
 When save button is clicked, should turn back into uneditable.
 
 To improve: GUI
-- To add invalid labels instead of adding text to field
+- To make it so multiple invalids will show
 - To reformat JComponents
 
 To add: Address
@@ -38,8 +38,11 @@ Used to add a new contact.
 To add more buttons and fields regarding address, occupation, meeting, etc.
 
 To add: 
-- Restrictions on phone/email entered.
+- Make Contact name mandatory
 - Ability to select text to send email or text in new tab. Button required.
+
+To improve: GUI
+- To make it so multiple invalids will show
 
 **To-do-list:**
 - Add tests

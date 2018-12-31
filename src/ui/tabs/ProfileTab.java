@@ -7,6 +7,8 @@ import model.Profile;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import static ui.tabs.ActionCommand.EDIT_PROFILE;
 import static ui.tabs.ActionCommand.SAVE_PROFILE;
@@ -63,7 +65,28 @@ public class ProfileTab extends JPanel implements ActionListener{
         editButton.addActionListener(this);
         saveButton.setActionCommand(SAVE_PROFILE.toString());
         saveButton.addActionListener(this);
-
+        phoneField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (phoneField.getText().contains("Invalid")) {
+                    format.validSettings(phoneField);
+                }
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+            }
+        });
+        emailField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (emailField.getText().contains("Invalid")) {
+                    format.validSettings(emailField);
+                }
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+            }
+        });
     }
 
 
@@ -83,11 +106,9 @@ public class ProfileTab extends JPanel implements ActionListener{
                 emailField.setEditable(false);
                 phoneField.setEditable(false);
             } catch (InvalidEmailException e1) {
-                String email = emailField.getText();
-                emailField.setText(email + " " + "Invalid email");  //TODO: Possibly turn into JLabel
+                format.invalidSettings(emailField,"email");
             } catch (InvalidPhoneException e1) {
-                String phone = phoneField.getText();
-                phoneField.setText(phone + " " + "Invalid phone");
+                format.invalidSettings(phoneField,"phone");
             }
 
         }
