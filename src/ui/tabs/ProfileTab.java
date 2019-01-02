@@ -69,7 +69,7 @@ public class ProfileTab extends JPanel implements ActionListener{
             @Override
             public void focusGained(FocusEvent e) {
                 if (phoneField.getText().contains("Invalid")) {
-                    format.validSettings(phoneField);
+                    format.resetField(phoneField);
                 }
             }
             @Override
@@ -80,7 +80,7 @@ public class ProfileTab extends JPanel implements ActionListener{
             @Override
             public void focusGained(FocusEvent e) {
                 if (emailField.getText().contains("Invalid")) {
-                    format.validSettings(emailField);
+                    format.resetField(emailField);
                 }
             }
             @Override

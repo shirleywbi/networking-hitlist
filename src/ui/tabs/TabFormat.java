@@ -59,8 +59,8 @@ public class TabFormat {
         field.setForeground(Color.RED);
     }
 
-    //EFFECTS: set valid
-    public void validSettings(JTextField field) {
+    //EFFECTS: reset field to empty with black font
+    public void resetField(JTextField field) {
         field.setText("");
         field.setForeground(Color.BLACK);
     }

@@ -85,6 +85,34 @@ public class Contact {
         return preferredContactMethod;
     }
 
+    //EFFECTS: returns true if contact's name, phone, email, address, occupation, or notes contains given string
+    //TODO: Does not work for ContactEvent or Birthday (yet?); Suggestion: have it show what it actually contains too
+    public boolean checkContainsString(String s) {
+        return checkInName(s)||checkInPhone(s)||checkInEmail(s)||checkInAddress(s)||checkInOccupation(s)||
+                checkInMeetings(s)||checkInNotes(s);
+    }
+    public boolean checkInName(String string){
+        return (name.contains(string));
+    }
+    public boolean checkInPhone(String string){
+        return (phone.contains(string));
+    }
+    public boolean checkInEmail(String string){
+        return (email.contains(string));
+    }
+    public boolean checkInAddress(String string){
+        return (address.contains(string));
+    }
+    public boolean checkInOccupation(String string){
+        return (occupation.contains(string));
+    }
+    public boolean checkInMeetings(String string){
+        return (meeting.contains(string));
+    }
+    public boolean checkInNotes(String string){
+        return (notes.contains(string));
+    }
+
     //setters
     public void setName(String name) {
         this.name = name;

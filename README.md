@@ -17,7 +17,7 @@ To add: Address
 - To allow for mailing, possible mail merge (future)
 
 **Contacts Tab:**\
-Status: Brainstorming
+Status: Work in progress
 
 Used for searching and viewing contacts.
 View in alphabetical order with letters as sub-headers (scrollable).
@@ -32,7 +32,7 @@ Must allow for search by:
 
 
 **Add Contacts Tab:**\
-Status: Work in progress
+Status: Functional
 
 Used to add a new contact.
 To add more buttons and fields regarding address, occupation, meeting, etc.
@@ -46,6 +46,9 @@ To improve: GUI
 
 **To-do-list:**
 - Add tests
+- Possible threading issue - To read: https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html#threading
 
-
-
+**Reminder Tab:**\
+**Email Tab:**\
+**Text Tab:**\
+Status: Does not exist yet

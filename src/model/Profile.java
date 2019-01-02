@@ -48,31 +48,40 @@ public class Profile {
         //TODO
     }
 
+    //MODIFIES: this
+    //EFFECTS: sorts contacts alphabetically
     public ArrayList<Contact> sortContacts() {
         return null; //stub
+    }
+
+    //REQUIRES: contacts to only contain one person with a name; others with the same name are considered the same person
+    //EFFECTS: return list of all contacts with details containing given string
+    public ArrayList<Contact> findAllContactsWithString(String string) {
+        ArrayList<Contact> listOfContacts = new ArrayList<>();
+        for (Contact c: contacts) {
+                if (c.checkContainsString(string)) {
+                    listOfContacts.add(c);
+            }
+        }
+        return listOfContacts;
     }
 
     //getters
     public String getName() {
         return name;
     }
-
     public String getPhone() {
         return phone;
     }
-
     public String getEmail() {
         return email;
     }
-
     public String getAddress() {
         return address;
     }
-
     public ArrayList<Contact> getContacts() {
         return contacts;
     }
-
     public ArrayList<String> getContactsAsString() {
         ArrayList<String> contactsAsString = new ArrayList<>();
         for (Contact c: contacts) {
@@ -85,7 +94,6 @@ public class Profile {
     public void setName(String name) {
         this.name = name;
     }
-
     public void setPhone(String phone) throws InvalidPhoneException {
         if (phone.matches("^([+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*){0,1}$")) {
             this.phone = phone;
@@ -93,7 +101,6 @@ public class Profile {
             throw new InvalidPhoneException();
         }
     }
-
     public void setEmail(String email) throws InvalidEmailException {
         if (email.matches("^([\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}){0,1}$")) {
             this.email = email;
@@ -101,7 +108,6 @@ public class Profile {
             throw new InvalidEmailException();
         }
     }
-
     public void setAddress(String address) {
         this.address = address;
     }

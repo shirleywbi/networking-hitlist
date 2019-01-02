@@ -14,43 +14,44 @@ public class ContactsTab extends JPanel implements ActionListener {
     Profile profile = Profile.getInstance();
     JLabel contactLabel = new JLabel("Contacts");
     JButton addContactButton = new JButton("+");
-
+    JTextField searchField = new JTextField();
     TabFormat format = new TabFormat();
 
     public ContactsTab() {
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        setPreferredSize(new Dimension(Integer.MAX_VALUE,Integer.MAX_VALUE));
         format.setInset(this);
         format.setTitleFont(contactLabel);
         format.setButtonFont(addContactButton);
 
         JPanel titlePanel = new JPanel();
         JPanel contactsPanel = new JPanel();
-        titlePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        contactsPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
+        titlePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         titlePanel.add(contactLabel);
         titlePanel.add(addContactButton);
 
+        contactsPanel.setLayout(new BoxLayout(contactsPanel,BoxLayout.Y_AXIS));
+
         //TODO: FAKE CONTACTS FOR CHECKING UI
         ArrayList<String> contactsAsString = new ArrayList<>();
-        contactsAsString.add("George");
-        contactsAsString.add("Peter");
-        contactsAsString.add("Bob");
-        contactsAsString.add("Alice");
-        contactsAsString.add("George");
-        contactsAsString.add("Peter");
-        contactsAsString.add("Bob");
+        contactsAsString.add("Peter Rabbit");
+        contactsAsString.add("Bob the Builder");
+        contactsAsString.add("Alice in Wonderland");
+        contactsAsString.add("Steven Universe");
+        contactsAsString.add("Dipper Pines");
 
 //        Object[] arrayOfContacts = profile.getContactsAsString().toArray(); //TODO: ACTUAL CODE -- This will need to be updated every time new contact is created
         Object[] arrayOfContacts = contactsAsString.toArray(); //TODO: FAKE TESTING
         JList<Object> listOfContacts = new JList<>(arrayOfContacts);
+        format.setSubtitleFont(listOfContacts);
 
-//        JTable table = new JTable(new DefaultTableModel(),1);
-//        DefaultTableModel model = new DefaultTableModel();
-//        model.addColumn("",);
-        JScrollPane scrollPane = new JScrollPane(listOfContacts);
+        JScrollPane contactsPane = new JScrollPane(listOfContacts,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        contactsPanel.add(scrollPane);
+        contactsPanel.add(searchField);
+        contactsPanel.add(contactsPane);
+
 
         //TODO: Idea for contacts pane - https://www.javatpoint.com/BoxLayout
 //        for (int i = 0;i<profile.getContacts().size();i++) {
@@ -65,9 +66,6 @@ public class ContactsTab extends JPanel implements ActionListener {
         addContactButton.setActionCommand(ADD_CONTACT.toString());
         addContactButton.addActionListener(this);
     }
-
-
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
